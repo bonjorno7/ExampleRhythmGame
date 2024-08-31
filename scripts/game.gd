@@ -9,3 +9,5 @@ var scroll_speed := 1.000
 
 var song: Song
 var chart: Chart
+var timing: Timing
+var layers: Array[Layer]

@@ -1,7 +1,7 @@
 class_name Music
 extends AudioStreamPlayer
 
-@export var buffer: int = 100  ## Number of physics frames to smooth across.
+@export var buffer: float = 1.0  ## Time duration to smooth across.
 
 var _play_later: bool  # Start audio playback after a given delay.
 var _time_start: float  # Used to determine time relative to playback.
@@ -47,7 +47,7 @@ func start(time: float = 0.0) -> void:
 	_time_start = _time_pause - time
 
 	_offset_array.clear()
-	_offset_array.resize(buffer)
+	_offset_array.resize(roundi(buffer * Engine.physics_ticks_per_second))
 	_offset_index = 0
 	_offset_sum = 0.0
 	_offset_average = 0.0

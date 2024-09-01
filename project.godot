@@ -14,6 +14,10 @@ config/name="Examle Rhythm Game"
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 
+[audio]
+
+buses/default_bus_layout="res://assets/bus_layout.tres"
+
 [autoload]
 
 Game="*res://scripts/game.gd"

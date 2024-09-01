@@ -2,7 +2,7 @@
 extends Node
 
 var fullscreen: bool = false
-var volume: float = 1.0
+var volume: float = 0.5
 var audio_offset: float = 0.000
 var video_offset: float = 0.000
 var scroll_speed: float = 1.000

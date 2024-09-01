@@ -10,7 +10,7 @@ var _time_index := 0
 var _beat_index := 0
 
 
-func setup():
+func setup() -> void:
 	_items.clear()
 	_time_index = 0
 	_beat_index = 0
@@ -23,7 +23,7 @@ func setup():
 		_items[index].setup(_items[index - 1])
 
 
-func update(time: float):
+func update(time: float) -> void:
 	time_audio = time - Game.audio_offset
 	time_video = time_audio + Game.video_offset
 	beat_audio = get_beat(time_audio)
@@ -80,11 +80,11 @@ class _Item:
 
 	var time: float
 
-	func _init(beat_: float, value_: float):
+	func _init(beat_: float, value_: float) -> void:
 		beat = beat_
 		value = value_
 
-	func setup(prev: _Item = null):
+	func setup(prev: _Item = null) -> void:
 		if prev:
 			time = prev.time + (beat - prev.beat) * (60.0 / prev.value)
 		else:

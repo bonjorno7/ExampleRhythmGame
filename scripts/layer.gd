@@ -10,11 +10,11 @@ var _scale_items: Array[_Curve] = []
 var _scale_index: int = 0
 
 
-func _init(id_: int):
+func _init(id_: int) -> void:
 	id = id_
 
 
-func setup():
+func setup() -> void:
 	_position_items.clear()
 	_position_index = 0
 	_scale_items.clear()
@@ -62,7 +62,7 @@ func setup():
 			_scale_items.append(_Curve.new(Game.timing.get_time(zoom.beat), zoom.value, zoom.curve))
 
 
-func update(time: float):
+func update(time: float) -> void:
 	position = get_position(time)
 	scale = get_scale(time)
 
@@ -116,7 +116,7 @@ class _Curve:
 	var value: float
 	var curve: float
 
-	func _init(time_: float, value_: float, curve_: float):
+	func _init(time_: float, value_: float, curve_: float) -> void:
 		time = time_
 		value = value_
 		curve = curve_
@@ -128,11 +128,11 @@ class _Step:
 
 	var position: float
 
-	func _init(time_: float, value_: float):
+	func _init(time_: float, value_: float) -> void:
 		time = time_
 		value = value_
 
-	func setup(prev: _Step = null):
+	func setup(prev: _Step = null) -> void:
 		if prev:
 			position = prev.position + (time - prev.time) * prev.value
 		else:

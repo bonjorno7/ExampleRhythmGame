@@ -1,13 +1,13 @@
 class_name Timing
 
-var time_audio: float
-var time_video: float
-var beat_audio: float
-var beat_video: float
+var time_audio: float = 0.0
+var time_video: float = 0.0
+var beat_audio: float = 0.0
+var beat_video: float = 0.0
 
-var _items: Array[_Item]
-var _time_index := 0
-var _beat_index := 0
+var _items: Array[_Item] = []
+var _time_index: int = 0
+var _beat_index: int = 0
 
 
 func setup() -> void:

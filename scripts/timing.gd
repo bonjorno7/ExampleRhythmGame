@@ -1,8 +1,11 @@
 class_name Timing
 
 var time_audio: float = 0.0
+var time_input: float = 0.0
 var time_video: float = 0.0
+
 var beat_audio: float = 0.0
+var beat_input: float = 0.0
 var beat_video: float = 0.0
 
 var _items: Array[_Item] = []
@@ -10,23 +13,26 @@ var _time_index: int = 0
 var _beat_index: int = 0
 
 
-func setup() -> void:
+func setup(song: Song) -> void:
 	_items.clear()
 	_time_index = 0
 	_beat_index = 0
 
-	for tempo in Game.chart.tempos:
+	for tempo in song.tempos:
 		_items.append(_Item.new(tempo.beat, tempo.value))
 	if not _items.is_empty():
-		_items[0].setup()
+		_items[0].setup_first(song)
 	for index in range(1, len(_items)):
-		_items[index].setup(_items[index - 1])
+		_items[index].setup_other(_items[index - 1])
 
 
 func update(time: float) -> void:
-	time_audio = time - Game.audio_offset
-	time_video = time_audio + Game.video_offset
+	time_audio = time  # Audio is our source of truth.
+	time_input = time_audio - Game.audio_offset  # Audio offset includes input latency.
+	time_video = time_input + Game.video_offset  # Video offset includes input latency.
+
 	beat_audio = get_beat(time_audio)
+	beat_input = get_beat(time_input)
 	beat_video = get_beat(time_video)
 
 
@@ -84,8 +90,8 @@ class _Item:
 		beat = beat_
 		value = value_
 
-	func setup(prev: _Item = null) -> void:
-		if prev:
-			time = prev.time + (beat - prev.beat) * (60.0 / prev.value)
-		else:
-			time = Game.song.offset + beat * (60.0 / value)
+	func setup_first(song: Song) -> void:
+		time = song.offset + beat * (60.0 / value)
+
+	func setup_other(prev: _Item) -> void:
+		time = prev.time + (beat - prev.beat) * (60.0 / prev.value)

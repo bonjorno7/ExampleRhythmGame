@@ -21,10 +21,10 @@ func _init() -> void:
 
 
 func setup() -> void:
-	timing.setup()
+	timing.setup(song)
 
 	for layer in layers:
-		layer.setup()
+		layer.setup(chart, timing)
 
 
 func update(time: float) -> void:

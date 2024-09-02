@@ -14,7 +14,7 @@ func _init(id_: int) -> void:
 	id = id_
 
 
-func setup() -> void:
+func setup(chart: Chart, timing: Timing) -> void:
 	_position_items.clear()
 	_position_index = 0
 	_scale_items.clear()
@@ -22,9 +22,9 @@ func setup() -> void:
 
 	# Gather speed curves that belong to this layer.
 	var speed_curves: Array[_Curve] = []
-	for speed in Game.chart.speeds:
+	for speed in chart.speeds:
 		if speed.layer == id:
-			speed_curves.append(_Curve.new(Game.timing.get_time(speed.beat), speed.value, speed.curve))
+			speed_curves.append(_Curve.new(timing.get_time(speed.beat), speed.value, speed.curve))
 
 	# Convert speed curves to segments of constant speed.
 	for index in range(len(speed_curves) - 1):
@@ -57,9 +57,9 @@ func setup() -> void:
 		_position_items[index].setup(_position_items[index - 1])
 
 	# Gather zoom curves that belong to this layer.
-	for zoom in Game.chart.zooms:
+	for zoom in chart.zooms:
 		if zoom.layer == id:
-			_scale_items.append(_Curve.new(Game.timing.get_time(zoom.beat), zoom.value, zoom.curve))
+			_scale_items.append(_Curve.new(timing.get_time(zoom.beat), zoom.value, zoom.curve))
 
 
 func update(time: float) -> void:

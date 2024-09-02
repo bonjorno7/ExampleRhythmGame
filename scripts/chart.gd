@@ -1,18 +1,8 @@
 class_name Chart
 
-var tempos: Array[Tempo] = []
 var speeds: Array[Speed] = []
 var zooms: Array[Zoom] = []
 var notes: Array[Note] = []
-
-
-class Tempo:
-	var beat: float
-	var value: float
-
-	func _init(beat_ := 0.0, value_ := 120.0) -> void:
-		beat = beat_
-		value = value_
 
 
 class Speed:

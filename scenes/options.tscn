@@ -1,0 +1,404 @@
+[gd_scene load_steps=7 format=3 uid="uid://4w1t6orncd2o"]
+
+[ext_resource type="Script" path="res://scenes/options.gd" id="1_yfj8f"]
+[ext_resource type="AudioStream" uid="uid://ef8gcmvqbkm2" path="res://assets/calibration.ogg" id="2_m8lto"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="3_f5wtq"]
+[ext_resource type="AudioStream" uid="uid://s3nrxnqagsxl" path="res://assets/click.ogg" id="4_j26ek"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wekal"]
+bg_color = Color(0.377919, 0.377919, 0.377919, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6srq5"]
+bg_color = Color(0.753984, 0.753984, 0.753984, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfj8f")
+metadata/_edit_lock_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_m8lto")
+script = ExtResource("3_f5wtq")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_j26ek")
+
+[node name="Debounce" type="Timer" parent="Click"]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="UI"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+offset_right = 368.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 24
+text = "Back to Menu"
+
+[node name="ToggleFullscreen" type="Button" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -368.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Toggle Fullscreen"
+
+[node name="Sliders" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Volume" type="HSlider" parent="UI/Sliders"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+value = 0.5
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="UI/Sliders/Volume"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = -32.0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/Sliders/Volume"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 224.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "50 %"
+vertical_alignment = 1
+
+[node name="AudioOffset" type="HSlider" parent="UI/Sliders"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -0.1
+max_value = 0.3
+step = 0.001
+value = -0.1
+allow_greater = true
+allow_lesser = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="UI/Sliders/AudioOffset"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = -32.0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Audio Offset"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/Sliders/AudioOffset"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 224.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "0 ms"
+vertical_alignment = 1
+
+[node name="VideoOffset" type="HSlider" parent="UI/Sliders"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -0.1
+max_value = 0.3
+step = 0.001
+value = -0.1
+allow_greater = true
+allow_lesser = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="UI/Sliders/VideoOffset"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = -32.0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Video Offset"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/Sliders/VideoOffset"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 224.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "0 ms"
+vertical_alignment = 1
+
+[node name="ScrollSpeed" type="HSlider" parent="UI/Sliders"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 16.0
+step = 0.01
+value = 8.0
+allow_greater = true
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="UI/Sliders/ScrollSpeed"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = -32.0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Scroll Speed"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/Sliders/ScrollSpeed"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 224.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "8 x"
+vertical_alignment = 1
+
+[node name="CalibrateAudioOffset" type="Button" parent="UI"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 368.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Calibrate Audio Offset"
+
+[node name="CalibrateVideoOffset" type="Button" parent="UI"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -368.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Calibrate Video Offset"
+
+[node name="AudioCalibration" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AudioCalibration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Press D/F/J/K on the beat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VideoCalibration" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 124.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Floor" type="Panel" parent="VideoCalibration"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wekal")
+
+[node name="Ball1" type="Panel" parent="VideoCalibration"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_right = -88.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6srq5")
+
+[node name="Ball2" type="Panel" parent="VideoCalibration"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_right = -24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6srq5")
+
+[node name="Ball3" type="Panel" parent="VideoCalibration"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_right = 40.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6srq5")
+
+[node name="Ball4" type="Panel" parent="VideoCalibration"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 88.0
+offset_right = 104.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6srq5")
+
+[connection signal="pressed" from="UI/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="UI/ToggleFullscreen" to="." method="_on_toggle_fullscreen_pressed"]
+[connection signal="value_changed" from="UI/Sliders/Volume" to="." method="_on_volume_changed"]
+[connection signal="value_changed" from="UI/Sliders/Volume" to="." method="_play_click"]
+[connection signal="value_changed" from="UI/Sliders/AudioOffset" to="." method="_on_audio_offset_changed"]
+[connection signal="value_changed" from="UI/Sliders/AudioOffset" to="." method="_play_click"]
+[connection signal="value_changed" from="UI/Sliders/VideoOffset" to="." method="_play_click"]
+[connection signal="value_changed" from="UI/Sliders/VideoOffset" to="." method="_on_video_offset_changed"]
+[connection signal="value_changed" from="UI/Sliders/ScrollSpeed" to="." method="_on_scroll_speed_changed"]
+[connection signal="value_changed" from="UI/Sliders/ScrollSpeed" to="." method="_play_click"]
+[connection signal="pressed" from="UI/CalibrateAudioOffset" to="." method="_on_calibrate_audio_offset_pressed"]
+[connection signal="pressed" from="UI/CalibrateVideoOffset" to="." method="_on_calibrate_video_offset_pressed"]

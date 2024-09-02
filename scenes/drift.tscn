@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs0tsvr7o36kg"]
+
+[ext_resource type="Script" path="res://scenes/drift.gd" id="1_ap5ge"]
+[ext_resource type="AudioStream" uid="uid://biut1yx3wvc2m" path="res://assets/drift_bgm.ogg" id="2_lcjqb"]
+[ext_resource type="Script" path="res://scripts/music.gd" id="3_75e68"]
+[ext_resource type="AudioStream" uid="uid://dflxcbjq4038v" path="res://assets/drift_hit.ogg" id="4_ay3ie"]
+
+[node name="Drift" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ap5ge")
+metadata/_edit_lock_ = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 1
+process_priority = -10
+process_physics_priority = -10
+stream = ExtResource("2_lcjqb")
+script = ExtResource("3_75e68")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_ay3ie")
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "FPS"
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 8.0
+offset_right = 320.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Audio time drift compensation showcase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Time"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Drift" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = 88.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Drift"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -80.0
+offset_right = 112.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Back to Menu"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

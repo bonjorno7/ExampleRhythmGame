@@ -1,4 +1,4 @@
-class_name Music
+class_name MusicPlayer
 extends AudioStreamPlayer
 
 @export var buffer: float = 1.0  ## Time duration to smooth across.

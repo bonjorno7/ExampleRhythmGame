@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/options.gd" id="1_yfj8f"]
 [ext_resource type="AudioStream" uid="uid://ef8gcmvqbkm2" path="res://assets/calibration.ogg" id="2_m8lto"]
-[ext_resource type="Script" path="res://scripts/music.gd" id="3_f5wtq"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="3_f5wtq"]
 [ext_resource type="AudioStream" uid="uid://s3nrxnqagsxl" path="res://assets/click.ogg" id="4_j26ek"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wekal"]

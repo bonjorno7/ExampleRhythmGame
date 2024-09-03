@@ -8,7 +8,7 @@ var offset_array: PackedVector2Array
 var offset_index: int
 var next_beat := 0
 
-@onready var bgm: Music = %BGM
+@onready var bgm: MusicPlayer = %BGM
 @onready var hit: AudioStreamPlayer = %Hit
 
 

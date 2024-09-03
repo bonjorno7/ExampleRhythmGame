@@ -52,8 +52,8 @@ func _draw():
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		Game.goto_menu()
 
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	Game.goto_menu()

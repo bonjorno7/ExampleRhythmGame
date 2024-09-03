@@ -50,7 +50,7 @@ func _process(_delta: float):
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		Game.goto_menu()
 
 	for action in ["button_1", "button_2", "button_3", "button_4"]:
 		if event.is_action_pressed(action):
@@ -62,7 +62,7 @@ func _input(event: InputEvent):
 
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	Game.goto_menu()
 
 
 func _on_toggle_fullscreen_pressed():

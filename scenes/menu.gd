@@ -7,15 +7,15 @@ func _input(event: InputEvent):
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://scenes/play.tscn")
+	Game.goto_play()
 
 
 func _on_drift_pressed():
-	get_tree().change_scene_to_file("res://scenes/drift.tscn")
+	Game.goto_drift()
 
 
 func _on_options_pressed():
-	get_tree().change_scene_to_file("res://scenes/options.tscn")
+	Game.goto_options()
 
 
 func _on_exit_pressed():

@@ -40,7 +40,7 @@ func _physics_process(_delta: float):
 func _process(_delta: float):
 	if calibration_mode == CalibrationMode.VIDEO:
 		# Not using latency compensation because the goal is to find the latency.
-		var cycle: float = %Music.get_time_synced() * BPS * 0.25
+		var cycle: float = %Music.get_time_smooth() * BPS * 0.25
 
 		%VideoCalibration/Ball1.position.y = sqrt(absf(sin(PI * (cycle - 0.00)))) * -200.0
 		%VideoCalibration/Ball2.position.y = sqrt(absf(sin(PI * (cycle - 0.25)))) * -200.0
@@ -55,7 +55,7 @@ func _input(event: InputEvent):
 	for action in ["button_1", "button_2", "button_3", "button_4"]:
 		if event.is_action_pressed(action):
 			# Not using latency compensation because the goal is to find the latency.
-			var time: float = %Music.get_time_synced()
+			var time: float = %Music.get_time_smooth()
 			var target := floorf((time + 0.150) * BPS) / BPS
 			calibration_hits.append(time - target)
 			break

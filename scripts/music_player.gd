@@ -73,7 +73,7 @@ func get_time_player() -> float:
 
 
 ## Time adjusted to compensate for audio drift.
-func get_time_synced() -> float:
+func get_time_smooth() -> float:
 	return get_time_engine() - get_time_offset()
 
 

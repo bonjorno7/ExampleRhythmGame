@@ -20,18 +20,18 @@ func _ready():
 func _physics_process(_delta: float):
 	var time := bgm.get_time_engine()
 	offset_array[offset_index].x = bgm.get_time_player() - time
-	offset_array[offset_index].y = bgm.get_time_synced() - time
+	offset_array[offset_index].y = bgm.get_time_smooth() - time
 	offset_index = (offset_index + 1) % len(offset_array)
 
 
 func _process(_delta: float):
-	if bgm.get_time_synced() * BPS >= float(next_beat) - AudioServer.get_time_to_next_mix():
+	if bgm.get_time_smooth() * BPS >= float(next_beat) - AudioServer.get_time_to_next_mix():
 		queue_redraw()
 		hit.play()
 		next_beat += 1
 
 	$FPS.text = str(roundi(Engine.get_frames_per_second()))
-	$Time.text = String.num(bgm.get_time_synced(), 6).pad_decimals(6)
+	$Time.text = String.num(bgm.get_time_smooth(), 6).pad_decimals(6)
 	$Drift.text = String.num(bgm.get_time_offset() * 1000.0, 6).pad_decimals(6)
 
 

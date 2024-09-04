@@ -1,7 +1,8 @@
 class_name MusicPlayer
 extends AudioStreamPlayer
 
-@export var buffer: float = 1.0  ## Time duration to smooth across.
+## Time duration to smooth across. Value is only read on start.
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var buffer: float = 1.0
 
 var _play_later: bool  # Start audio playback after a given delay.
 var _time_start: float  # Used to determine time relative to playback.

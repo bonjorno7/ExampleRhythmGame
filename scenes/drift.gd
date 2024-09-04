@@ -25,7 +25,7 @@ func _physics_process(_delta: float):
 
 
 func _process(_delta: float):
-	if bgm.get_time_smooth() * BPS >= float(next_beat) - AudioServer.get_time_to_next_mix():
+	if bgm.get_time_smooth() + AudioServer.get_time_to_next_mix() >= next_beat * BPS:
 		queue_redraw()
 		hit.play()
 		next_beat += 1

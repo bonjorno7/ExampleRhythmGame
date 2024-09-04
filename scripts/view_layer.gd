@@ -1,6 +1,6 @@
-class_name Layer
+class_name ViewLayer
+extends Node
 
-var id: int
 var position: float = 0.0
 var scale: float = 1.0
 
@@ -10,11 +10,7 @@ var _scale_items: Array[_Curve] = []
 var _scale_index: int = 0
 
 
-func _init(id_: int) -> void:
-	id = id_
-
-
-func setup(chart: Chart, timing: Timing) -> void:
+func setup(layer: int, chart: Chart, sync_manager: SyncManager) -> void:
 	_position_items.clear()
 	_position_index = 0
 	_scale_items.clear()
@@ -23,8 +19,8 @@ func setup(chart: Chart, timing: Timing) -> void:
 	# Gather speed curves that belong to this layer.
 	var speed_curves: Array[_Curve] = []
 	for speed in chart.speeds:
-		if speed.layer == id:
-			speed_curves.append(_Curve.new(timing.get_time(speed.beat), speed.value, speed.curve))
+		if speed.layer == layer:
+			speed_curves.append(_Curve.new(sync_manager.get_time(speed.beat), speed.value, speed.curve))
 
 	# Convert speed curves to segments of constant speed.
 	for index in range(len(speed_curves) - 1):
@@ -58,8 +54,8 @@ func setup(chart: Chart, timing: Timing) -> void:
 
 	# Gather zoom curves that belong to this layer.
 	for zoom in chart.zooms:
-		if zoom.layer == id:
-			_scale_items.append(_Curve.new(timing.get_time(zoom.beat), zoom.value, zoom.curve))
+		if zoom.layer == layer:
+			_scale_items.append(_Curve.new(sync_manager.get_time(zoom.beat), zoom.value, zoom.curve))
 
 
 func update(time: float) -> void:

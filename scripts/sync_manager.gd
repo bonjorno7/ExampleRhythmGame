@@ -1,6 +1,9 @@
 class_name SyncManager
 extends Node
 
+## Song to sync with. Does not update automatically if data is changed.
+@export var song: Song: set = set_song
+
 var time_audio: float = 0.0
 var time_input: float = 0.0
 var time_video: float = 0.0
@@ -14,7 +17,9 @@ var _time_index: int = 0
 var _beat_index: int = 0
 
 
-func setup(song: Song) -> void:
+func set_song(value: Song) -> void:
+	song = value
+
 	_items.clear()
 	_time_index = 0
 	_beat_index = 0

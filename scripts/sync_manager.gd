@@ -29,8 +29,8 @@ func setup(song: Song) -> void:
 
 func update() -> void:
 	time_audio = get_parent().get_time_smooth()  # Music is our source of truth.
-	time_input = time_audio - Game.audio_offset  # Audio offset includes input latency.
-	time_video = time_input + Game.video_offset  # Video offset includes input latency.
+	time_input = time_audio - GameState.audio_offset  # Audio offset includes input latency.
+	time_video = time_input + GameState.video_offset  # Video offset includes input latency.
 
 	beat_audio = get_beat(time_audio)
 	beat_input = get_beat(time_input)

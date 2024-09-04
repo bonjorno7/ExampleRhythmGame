@@ -10,10 +10,10 @@ var calibration_hits: PackedFloat64Array
 
 
 func _ready():
-	%Volume.value = Game.volume
-	%AudioOffset.value = Game.audio_offset
-	%VideoOffset.value = Game.video_offset
-	%ScrollSpeed.value = Game.scroll_speed
+	%Volume.value = GameState.volume
+	%AudioOffset.value = GameState.audio_offset
+	%VideoOffset.value = GameState.video_offset
+	%ScrollSpeed.value = GameState.scroll_speed
 
 
 func _physics_process(_delta: float):
@@ -49,7 +49,7 @@ func _process(_delta: float):
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		Game.goto_menu()
+		GameState.goto_menu()
 
 	for action in ["button_1", "button_2", "button_3", "button_4"]:
 		if event.is_action_pressed(action):
@@ -61,20 +61,20 @@ func _input(event: InputEvent):
 
 
 func _on_back_pressed():
-	Game.goto_menu()
+	GameState.goto_menu()
 
 
 func _on_toggle_fullscreen_pressed():
-	Game.fullscreen = not Game.fullscreen
+	GameState.fullscreen = not GameState.fullscreen
 
-	if Game.fullscreen:
+	if GameState.fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func _on_volume_changed(value: float):
-	Game.volume = value
+	GameState.volume = value
 	%Volume/Value.text = String.num(value * 100, 1) + " %"
 
 	AudioServer.set_bus_volume_db(0, remap(value, 0, 1, -48, 0))
@@ -82,17 +82,17 @@ func _on_volume_changed(value: float):
 
 
 func _on_audio_offset_changed(value: float):
-	Game.audio_offset = value
+	GameState.audio_offset = value
 	%AudioOffset/Value.text = str(roundi(value * 1000)) + " ms"
 
 
 func _on_video_offset_changed(value: float):
-	Game.video_offset = value
+	GameState.video_offset = value
 	%VideoOffset/Value.text = str(roundi(value * 1000)) + " ms"
 
 
 func _on_scroll_speed_changed(value: float):
-	Game.scroll_speed = value
+	GameState.scroll_speed = value
 	%ScrollSpeed/Value.text = String.num(value, 2) + " x"
 
 

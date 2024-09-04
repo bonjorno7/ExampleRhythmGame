@@ -1,4 +1,4 @@
-## Autoload Game
+## Autoload GameState
 extends Node
 
 var fullscreen: bool = false

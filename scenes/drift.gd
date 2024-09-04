@@ -48,8 +48,8 @@ func _draw():
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		Game.goto_menu()
+		GameState.goto_menu()
 
 
 func _on_back_pressed():
-	Game.goto_menu()
+	GameState.goto_menu()

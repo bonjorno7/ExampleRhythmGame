@@ -27,16 +27,6 @@ script = ExtResource("3_75e68")
 unique_name_in_owner = true
 stream = ExtResource("4_ay3ie")
 
-[node name="FPS" type="Label" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 72.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 24
-text = "FPS"
-vertical_alignment = 1
-
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -52,7 +42,19 @@ text = "Audio time drift compensation showcase"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FPS" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "FPS"
+vertical_alignment = 1
+
 [node name="Time" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -68,6 +70,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Drift" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

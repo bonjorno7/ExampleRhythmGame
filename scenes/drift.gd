@@ -8,31 +8,28 @@ var offset_array: PackedVector2Array
 var offset_index: int
 var next_beat := 0
 
-@onready var bgm: MusicPlayer = %BGM
-@onready var hit: AudioStreamPlayer = %Hit
-
 
 func _ready():
 	offset_array.resize(300)
-	bgm.start()
+	%BGM.start()
 
 
 func _physics_process(_delta: float):
-	var time := bgm.get_time_engine()
-	offset_array[offset_index].x = bgm.get_time_player() - time
-	offset_array[offset_index].y = bgm.get_time_smooth() - time
+	var time: float = %BGM.get_time_engine()
+	offset_array[offset_index].x = %BGM.get_time_player() - time
+	offset_array[offset_index].y = %BGM.get_time_smooth() - time
 	offset_index = (offset_index + 1) % len(offset_array)
 
 
 func _process(_delta: float):
-	if bgm.get_time_smooth() + AudioServer.get_time_to_next_mix() >= next_beat / BPS:
+	if %BGM.get_time_smooth() + AudioServer.get_time_to_next_mix() >= next_beat / BPS:
 		queue_redraw()
-		hit.play()
+		%Hit.play()
 		next_beat += 1
 
-	$FPS.text = str(roundi(Engine.get_frames_per_second()))
-	$Time.text = String.num(bgm.get_time_smooth(), 6).pad_decimals(6)
-	$Drift.text = String.num(bgm.get_time_offset() * 1000.0, 6).pad_decimals(6)
+	%FPS.text = str(roundi(Engine.get_frames_per_second()))
+	%Time.text = String.num(%BGM.get_time_smooth(), 6).pad_decimals(6)
+	%Drift.text = String.num(%BGM.get_time_offset() * 1000.0, 6).pad_decimals(6)
 
 
 func _draw():

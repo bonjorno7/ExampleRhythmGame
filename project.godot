@@ -20,7 +20,7 @@ buses/default_bus_layout="res://assets/bus_layout.tres"
 
 [autoload]
 
-GameState="*res://scripts/game_state.gd"
+GameState="*res://nodes/game_state.gd"
 
 [display]
 

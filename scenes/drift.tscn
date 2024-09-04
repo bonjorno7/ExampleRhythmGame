@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/drift.gd" id="1_ap5ge"]
 [ext_resource type="AudioStream" uid="uid://biut1yx3wvc2m" path="res://assets/drift_bgm.ogg" id="2_lcjqb"]
-[ext_resource type="Script" path="res://scripts/music_player.gd" id="3_75e68"]
+[ext_resource type="Script" path="res://nodes/music_player.gd" id="3_75e68"]
 [ext_resource type="AudioStream" uid="uid://dflxcbjq4038v" path="res://assets/drift_hit.ogg" id="4_ay3ie"]
 
 [node name="Drift" type="Control"]

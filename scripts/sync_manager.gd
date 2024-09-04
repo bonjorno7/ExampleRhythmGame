@@ -1,4 +1,5 @@
-class_name Timing
+class_name SyncManager
+extends Node
 
 var time_audio: float = 0.0
 var time_input: float = 0.0

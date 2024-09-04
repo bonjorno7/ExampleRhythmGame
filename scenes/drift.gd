@@ -1,6 +1,5 @@
 extends Control
 
-# TODO: Use Song and Timing instead of hardcoding BPM.
 const BPM := 120.0
 const BPS := BPM / 60.0
 

@@ -27,8 +27,8 @@ func setup(song: Song) -> void:
 		_items[index].setup_other(_items[index - 1])
 
 
-func update(time: float) -> void:
-	time_audio = time  # Audio is our source of truth.
+func update() -> void:
+	time_audio = get_parent().get_time_smooth()  # Music is our source of truth.
 	time_input = time_audio - Game.audio_offset  # Audio offset includes input latency.
 	time_video = time_input + Game.video_offset  # Video offset includes input latency.
 

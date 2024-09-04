@@ -10,7 +10,7 @@ var _scale_items: Array[_Curve] = []
 var _scale_index: int = 0
 
 
-func setup(layer: int, chart: Chart, sync_manager: SyncManager) -> void:
+func setup(chart: Chart) -> void:
 	_position_items.clear()
 	_position_index = 0
 	_scale_items.clear()
@@ -19,8 +19,8 @@ func setup(layer: int, chart: Chart, sync_manager: SyncManager) -> void:
 	# Gather speed curves that belong to this layer.
 	var speed_curves: Array[_Curve] = []
 	for speed in chart.speeds:
-		if speed.layer == layer:
-			speed_curves.append(_Curve.new(sync_manager.get_time(speed.beat), speed.value, speed.curve))
+		if speed.layer == get_index():
+			speed_curves.append(_Curve.new(get_parent().get_time(speed.beat), speed.value, speed.curve))
 
 	# Convert speed curves to segments of constant speed.
 	for index in range(len(speed_curves) - 1):
@@ -54,13 +54,13 @@ func setup(layer: int, chart: Chart, sync_manager: SyncManager) -> void:
 
 	# Gather zoom curves that belong to this layer.
 	for zoom in chart.zooms:
-		if zoom.layer == layer:
-			_scale_items.append(_Curve.new(sync_manager.get_time(zoom.beat), zoom.value, zoom.curve))
+		if zoom.layer == get_index():
+			_scale_items.append(_Curve.new(get_parent().get_time(zoom.beat), zoom.value, zoom.curve))
 
 
-func update(time: float) -> void:
-	position = get_position(time)
-	scale = get_scale(time)
+func update() -> void:
+	position = get_position(get_parent().time_video)
+	scale = get_scale(get_parent().time_video)
 
 
 func get_position(time: float) -> float:

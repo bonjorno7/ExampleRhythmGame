@@ -32,7 +32,7 @@ func set_song(value: Song) -> void:
 		_items[index].setup_other(_items[index - 1])
 
 
-func update(time: float) -> void:
+func set_time(time: float) -> void:
 	time_audio = time  # Audio is our source of truth.
 	time_input = time_audio - Game.audio_offset  # Audio offset includes input latency.
 	time_video = time_input + Game.video_offset  # Video offset includes input latency.
@@ -40,6 +40,10 @@ func update(time: float) -> void:
 	beat_audio = get_beat(time_audio)
 	beat_input = get_beat(time_input)
 	beat_video = get_beat(time_video)
+
+
+func set_beat(beat: float) -> void:
+	set_time(get_time(beat))
 
 
 func get_time(beat: float) -> float:

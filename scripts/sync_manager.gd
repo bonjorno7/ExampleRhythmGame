@@ -1,9 +1,6 @@
 class_name SyncManager
 extends Node
 
-## Song to sync with. Does not update automatically if data is changed.
-@export var song: Song: set = set_song
-
 var time_audio: float = 0.0
 var time_input: float = 0.0
 var time_video: float = 0.0
@@ -17,9 +14,7 @@ var _time_index: int = 0
 var _beat_index: int = 0
 
 
-func set_song(value: Song) -> void:
-	song = value
-
+func setup(song: Song) -> void:
 	_items.clear()
 	_time_index = 0
 	_beat_index = 0
@@ -32,7 +27,7 @@ func set_song(value: Song) -> void:
 		_items[index].setup_other(_items[index - 1])
 
 
-func set_time(time: float) -> void:
+func update(time: float) -> void:
 	time_audio = time  # Audio is our source of truth.
 	time_input = time_audio - Game.audio_offset  # Audio offset includes input latency.
 	time_video = time_input + Game.video_offset  # Video offset includes input latency.
@@ -40,10 +35,6 @@ func set_time(time: float) -> void:
 	beat_audio = get_beat(time_audio)
 	beat_input = get_beat(time_input)
 	beat_video = get_beat(time_video)
-
-
-func set_beat(beat: float) -> void:
-	set_time(get_time(beat))
 
 
 func get_time(beat: float) -> float:

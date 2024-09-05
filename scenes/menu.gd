@@ -7,15 +7,15 @@ func _input(event: InputEvent):
 
 
 func _on_play_pressed():
-	Game.goto_play()
+	GameState.goto_play()
 
 
 func _on_drift_pressed():
-	Game.goto_drift()
+	GameState.goto_drift()
 
 
 func _on_options_pressed():
-	Game.goto_options()
+	GameState.goto_options()
 
 
 func _on_exit_pressed():

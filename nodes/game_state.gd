@@ -1,6 +1,10 @@
 ## Autoload GameState
 extends Node
 
+const TIME_GREAT: float = 0.050
+const TIME_GOOD: float = 0.100
+const TIME_BAD: float = 0.200
+
 var fullscreen: bool = false
 var volume: float = 0.5
 var audio_offset: float = 0.000

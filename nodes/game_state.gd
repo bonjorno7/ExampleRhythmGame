@@ -11,6 +11,13 @@ var audio_offset: float = 0.000
 var video_offset: float = 0.000
 var scroll_speed: float = 8.000
 
+var song: Song
+var chart: Chart
+var score: int
+var max_score: int
+var combo: int
+var max_combo: int
+
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS

@@ -8,6 +8,15 @@ var video_offset: float = 0.000
 var scroll_speed: float = 8.000
 
 
+func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		get_tree().paused = not get_tree().paused
+
+
 func goto_menu() -> void:
 	_goto_file_deferred.call_deferred("res://scenes/menu.tscn")
 

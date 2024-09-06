@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwuwfjtuicfx6"]
+
+[ext_resource type="Script" path="res://scenes/line.gd" id="1_nnwph"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfr31"]
+render_priority = -2
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yvxov"]
+size = Vector2(2, 0.04)
+
+[node name="Line" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_lfr31")
+mesh = SubResource("PlaneMesh_yvxov")
+script = ExtResource("1_nnwph")

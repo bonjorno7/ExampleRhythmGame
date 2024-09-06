@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=3 uid="uid://2i12ywt2joqf"]
+
+[ext_resource type="Script" path="res://scenes/play.gd" id="1_hckln"]
+[ext_resource type="Script" path="res://nodes/music_player.gd" id="3_i4bhj"]
+[ext_resource type="Script" path="res://nodes/sync_manager.gd" id="3_p013a"]
+[ext_resource type="Script" path="res://nodes/view_layer.gd" id="4_tm7qj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkhxk"]
+render_priority = -3
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4lgdc"]
+size = Vector2(2, 24)
+center_offset = Vector3(0, 0, -8)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_loenj"]
+render_priority = -1
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 0.752941)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kf3bk"]
+size = Vector2(2, 0.02)
+
+[node name="Play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hckln")
+metadata/_edit_lock_ = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_i4bhj")
+
+[node name="SyncManager" type="Node" parent="MusicPlayer"]
+unique_name_in_owner = true
+script = ExtResource("3_p013a")
+
+[node name="ViewLayer1" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer2" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer3" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer4" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer5" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer6" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer7" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="ViewLayer8" type="Node" parent="MusicPlayer/SyncManager"]
+script = ExtResource("4_tm7qj")
+
+[node name="CameraPerspective" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 1.75)
+current = true
+fov = 45.0
+
+[node name="CameraOrthographic" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+projection = 1
+fov = 45.0
+size = 4.0
+
+[node name="Judge" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, 0.5, 0, -1, -2.18557e-08, 0, 0, -1.5)
+text = "Judge"
+font_size = 120
+outline_size = 20
+
+[node name="Combo" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, 0.5, 0, -1, -2.18557e-08, 0, 0, -3.5)
+text = "Combo"
+font_size = 200
+outline_size = 20
+
+[node name="FPS" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 32.0
+text = "FPS"
+
+[node name="Offset" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 120.0
+offset_bottom = 56.0
+text = "Offset
+"
+
+[node name="Score" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "Score"
+horizontal_alignment = 2
+
+[node name="MaxCombo" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 32.0
+offset_right = -8.0
+offset_bottom = 56.0
+grow_horizontal = 0
+text = "Max Combo"
+horizontal_alignment = 2
+
+[node name="LaneBackground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_pkhxk")
+mesh = SubResource("QuadMesh_4lgdc")
+
+[node name="JudgeLine" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_loenj")
+mesh = SubResource("PlaneMesh_kf3bk")

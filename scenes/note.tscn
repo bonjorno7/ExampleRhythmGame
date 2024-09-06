@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b642o7v4odabj"]
+
+[ext_resource type="Script" path="res://scenes/note.gd" id="1_hv6oa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6qqf"]
+render_priority = 3
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0.817776, 0.28378, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xouwl"]
+size = Vector2(0.4, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22aty"]
+render_priority = 2
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0.0777367, 0.463143, 0.633609, 0.501961)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5gtlr"]
+size = Vector2(0.4, 1)
+center_offset = Vector3(0, 0, -0.5)
+
+[node name="Note" type="Node3D"]
+script = ExtResource("1_hv6oa")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_a6qqf")
+mesh = SubResource("PlaneMesh_xouwl")
+
+[node name="Tail" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = SubResource("StandardMaterial3D_a6qqf")
+mesh = SubResource("PlaneMesh_xouwl")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_22aty")
+mesh = SubResource("PlaneMesh_5gtlr")

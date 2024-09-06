@@ -33,7 +33,7 @@ func goto_menu() -> void:
 
 
 func goto_play() -> void:
-	pass  # TODO: Add play scene.
+	_goto_file_deferred.call_deferred("res://scenes/play.tscn")
 
 
 func goto_drift() -> void:

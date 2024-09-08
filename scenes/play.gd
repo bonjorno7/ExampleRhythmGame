@@ -22,10 +22,6 @@ var button_states: Array[ButtonState]
 
 
 func _ready():
-	# Hardcoded until we add song select.
-	GameState.song = load("res://songs/overcast.tres")
-	GameState.chart = GameState.song.charts[0]
-
 	# One button per lane.
 	for index in range(4):
 		button_states.append(ButtonState.new())
@@ -177,7 +173,7 @@ func _process(_delta: float):
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_cancel"):
-		GameState.goto_menu()
+		GameState.goto_select()
 
 	elif event.is_action_pressed("change_camera"):
 		# This works because making one camera current makes the other one not current,

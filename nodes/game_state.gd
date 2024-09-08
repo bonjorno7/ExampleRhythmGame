@@ -32,6 +32,10 @@ func goto_menu() -> void:
 	_goto_file_deferred.call_deferred("res://scenes/menu.tscn")
 
 
+func goto_select() -> void:
+	_goto_file_deferred.call_deferred("res://scenes/select.tscn")
+
+
 func goto_play() -> void:
 	_goto_file_deferred.call_deferred("res://scenes/play.tscn")
 

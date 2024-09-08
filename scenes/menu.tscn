@@ -27,12 +27,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Play" type="Button" parent="Buttons"]
+[node name="Select" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
-text = "Play"
+text = "Select"
 
 [node name="Drift" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 120)
@@ -55,7 +55,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 text = "Exit"
 
-[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Select" to="." method="_on_select_pressed"]
 [connection signal="pressed" from="Buttons/Drift" to="." method="_on_drift_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]

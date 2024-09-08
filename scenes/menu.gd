@@ -6,8 +6,8 @@ func _input(event: InputEvent):
 		get_tree().quit()
 
 
-func _on_play_pressed():
-	GameState.goto_play()
+func _on_select_pressed():
+	GameState.goto_select()
 
 
 func _on_drift_pressed():

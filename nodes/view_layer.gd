@@ -10,6 +10,7 @@ var _scale_items: Array[_Curve] = []
 var _scale_index: int = 0
 
 
+## Pre-calculate the necessary values for converting from time to position and scale.
 func setup(chart: Chart) -> void:
 	_position_items.clear()
 	_position_index = 0
@@ -58,11 +59,13 @@ func setup(chart: Chart) -> void:
 			_scale_items.append(_Curve.new(get_parent().get_time(zoom.beat), zoom.value, zoom.curve))
 
 
+## Update the position and scale values based on the current music time.
 func update() -> void:
 	position = get_position(get_parent().time_video)
 	scale = get_scale(get_parent().time_video)
 
 
+## Calculate the position at a given time.
 func get_position(time: float) -> float:
 	if _position_items.is_empty():
 		return time
@@ -85,6 +88,7 @@ func get_position(time: float) -> float:
 	return lerpf(start.position, end.position, weight)
 
 
+## Calculate the scale at a given time.
 func get_scale(time: float) -> float:
 	if _scale_items.is_empty():
 		return 1.0

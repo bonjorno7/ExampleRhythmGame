@@ -14,6 +14,7 @@ var _time_index: int = 0
 var _beat_index: int = 0
 
 
+## Pre-calculate the necessary values for converting between time and beat.
 func setup(song: Song) -> void:
 	_items.clear()
 	_time_index = 0
@@ -27,6 +28,7 @@ func setup(song: Song) -> void:
 		_items[index].setup_other(_items[index - 1])
 
 
+## Update the time and beat values based on the current music time.
 func update() -> void:
 	time_audio = get_parent().get_time_smooth()  # Music is our source of truth.
 	time_input = time_audio - GameState.audio_offset  # Audio offset includes input latency.
@@ -37,6 +39,7 @@ func update() -> void:
 	beat_video = get_beat(time_video)
 
 
+## Convert beat to time using the song's tempo changes.
 func get_time(beat: float) -> float:
 	if _items.is_empty():
 		return beat
@@ -59,6 +62,7 @@ func get_time(beat: float) -> float:
 	return lerpf(start.time, end.time, weight)
 
 
+## Convert time to beat using the song's tempo changes.
 func get_beat(time: float) -> float:
 	if _items.is_empty():
 		return time

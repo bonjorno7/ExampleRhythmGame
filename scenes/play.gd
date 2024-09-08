@@ -42,7 +42,7 @@ func _ready():
 		notes.append(instance)
 
 	# TODO: Use song length and tempo to generate beat lines.
-	for beat in range(-12, 1000):
+	for beat in range(-100, 1000):
 		var instance: LineObject = LineScene.instantiate()
 		instance.setup(beat, sync_manager, view_layers[0])
 		lines.append(instance)

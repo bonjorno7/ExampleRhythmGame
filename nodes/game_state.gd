@@ -36,7 +36,9 @@ func goto_select() -> void:
 	_goto_file_deferred.call_deferred("res://scenes/select.tscn")
 
 
-func goto_play() -> void:
+func goto_play(song_: Song, chart_index: int) -> void:
+	song = song_
+	chart = song.charts[chart_index]
 	_goto_file_deferred.call_deferred("res://scenes/play.tscn")
 
 

@@ -7,15 +7,11 @@ func _input(event: InputEvent):
 
 
 func _on_overcast_pressed():
-	GameState.song = load("res://songs/overcast.tres")
-	GameState.chart = GameState.song.charts[0]
-	GameState.goto_play()
+	GameState.goto_play(load("res://songs/overcast.tres"), 0)
 
 
 func _on_abyssal_chronos_pressed():
-	GameState.song = load("res://songs/abyssal_chronos.tres")
-	GameState.chart = GameState.song.charts[0]
-	GameState.goto_play()
+	GameState.goto_play(load("res://songs/abyssal_chronos.tres"), 0)
 
 
 func _on_back_pressed():

@@ -265,6 +265,11 @@ func _input(event: InputEvent) -> void:
 				button_states[action].released = sync_manager.time_input
 
 
+func _on_music_player_finished() -> void:
+	# Switch to result screen 2 seconds after the song ends.
+	get_tree().create_timer(2.0).timeout.connect(GameState.goto_result)
+
+
 class ButtonState:
 	var pressed: bool = false  # Whether hold notes should treat this button as pressed.
 	var released: float = -INF  # The time at which the button was physically released.

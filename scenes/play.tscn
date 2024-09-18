@@ -150,3 +150,5 @@ mesh = SubResource("QuadMesh_4lgdc")
 [node name="JudgeLine" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_loenj")
 mesh = SubResource("PlaneMesh_kf3bk")
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]

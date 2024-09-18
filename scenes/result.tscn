@@ -1,0 +1,230 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxeflcnlph4if"]
+
+[ext_resource type="Script" path="res://scenes/result.gd" id="1_xxpmp"]
+
+[node name="Result" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxpmp")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 80)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 128.0
+offset_right = 240.0
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Artist" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 48)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 208.0
+offset_right = 160.0
+offset_bottom = 256.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Artist"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -140.0
+offset_right = 192.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rows" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Score" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/Score"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Score"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/Score"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="MaxCombo" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/MaxCombo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Combo"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/MaxCombo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="Great" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/Great"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Great"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/Great"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="Good" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/Good"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Good"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/Good"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="Bad" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/Bad"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Bad"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/Bad"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="Miss" type="HBoxContainer" parent="Panel/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/Rows/Miss"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Miss"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/Rows/Miss"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Value"
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -224.0
+offset_right = 128.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Back to Select"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

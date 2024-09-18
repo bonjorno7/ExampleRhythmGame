@@ -53,6 +53,13 @@ func _ready() -> void:
 	GameState.combo = 0
 	GameState.max_combo = 0
 
+	GameState.judge_great = 0
+	GameState.judge_good = 0
+	GameState.judge_bad = 0
+	GameState.judge_miss = 0
+	GameState.judge_hold_hit = 0
+	GameState.judge_hold_miss = 0
+
 	# Calculate max score, divide by this to get display score.
 	for note in notes:
 		var ticks := 1 + note.hold_end - note.hold_tick
@@ -139,6 +146,7 @@ func _process(_delta: float) -> void:
 				note.hold_process = true
 				%Judge.text = "(╥﹏╥)"
 				GameState.combo = 0
+				GameState.judge_miss += 1
 
 		# When you miss a regular note, or a hold note is completely done, it's removed.
 		if sync_manager.time_input - GameState.TIME_BAD > note.time_end:
@@ -160,9 +168,11 @@ func _process(_delta: float) -> void:
 					GameState.score += 10
 					GameState.combo += 1
 					GameState.max_combo = maxi(GameState.max_combo, GameState.combo)
+					GameState.judge_hold_hit += 1
 				else:
 					%Judge.text = "(╥﹏╥)"
 					GameState.combo = 0
+					GameState.judge_hold_miss += 1
 
 	# Update UI stuff.
 	%FPS.text = str(Engine.get_frames_per_second())
@@ -201,16 +211,19 @@ func _input(event: InputEvent) -> void:
 								GameState.score += 100
 								GameState.combo += 1
 								GameState.max_combo = maxi(GameState.max_combo, GameState.combo)
+								GameState.judge_great += 1
 
 							elif absf(note.time_start - sync_manager.time_input) < GameState.TIME_GOOD:
 								%Judge.text = "ദ്ദി ( ᵔ ᗜ ᵔ )"
 								GameState.score += 50
 								GameState.combo += 1
 								GameState.max_combo = maxi(GameState.max_combo, GameState.combo)
+								GameState.judge_good += 1
 
 							else:  # Implicitly this is within 200ms, because otherwise the note wouldn't be in notes_to_hit.
 								%Judge.text = "\"( - ⌓ - )"
 								GameState.combo = 0
+								GameState.judge_bad += 1
 
 							# Non-hold notes can be removed immediately.
 							notes_to_draw.erase(note)
@@ -229,16 +242,19 @@ func _input(event: InputEvent) -> void:
 									GameState.score += 100
 									GameState.combo += 1
 									GameState.max_combo = maxi(GameState.max_combo, GameState.combo)
+									GameState.judge_great += 1
 
 								elif absf(note.time_start - sync_manager.time_input) < GameState.TIME_GOOD:
 									%Judge.text = "ദ്ദി ( ᵔ ᗜ ᵔ )"
 									GameState.score += 50
 									GameState.combo += 1
 									GameState.max_combo = maxi(GameState.max_combo, GameState.combo)
+									GameState.judge_good += 1
 
 								else:  # Implicitly this is within 200ms, because otherwise the note wouldn't be in notes_to_hit.
 									%Judge.text = "\"( - ⌓ - )"
 									GameState.combo = 0
+									GameState.judge_bad += 1
 
 								break  # An input can only hit one note per lane.
 

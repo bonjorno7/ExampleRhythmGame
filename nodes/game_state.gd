@@ -18,6 +18,13 @@ var max_score: int
 var combo: int
 var max_combo: int
 
+var judge_great: int
+var judge_good: int
+var judge_bad: int
+var judge_miss: int
+var judge_hold_hit: int
+var judge_hold_miss: int
+
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS

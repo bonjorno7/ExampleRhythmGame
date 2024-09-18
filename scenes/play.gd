@@ -61,6 +61,12 @@ func _ready() -> void:
 	# Give the player 2 seconds to get ready before the song starts.
 	music_player.start(-2.0)
 
+	# Clear judge/combo default text on the first frame.
+	# They start with placeholder text to avoid a lagspike on the first note.
+	await get_tree().process_frame
+	%Judge.text = ""
+	%Combo.text = ""
+
 
 func _process(_delta: float) -> void:
 	sync_manager.update()

@@ -49,6 +49,10 @@ func goto_play(song_: Song, chart_index: int) -> void:
 	_goto_file_deferred.call_deferred("res://scenes/play.tscn")
 
 
+func goto_result() -> void:
+	_goto_file_deferred.call_deferred("res://scenes/result.tscn")
+
+
 func goto_drift() -> void:
 	_goto_file_deferred.call_deferred("res://scenes/drift.tscn")
 

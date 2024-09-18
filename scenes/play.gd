@@ -189,7 +189,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		GameState.goto_select()
+		GameState.goto_result()
 
 	elif event.is_action_pressed("change_camera"):
 		# This works because making one camera current makes the other one not current,

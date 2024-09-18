@@ -21,7 +21,7 @@ var button_states: Array[ButtonState]
 @onready var view_layers: Array[ViewLayer]
 
 
-func _ready():
+func _ready() -> void:
 	# One button per lane.
 	for index in range(4):
 		button_states.append(ButtonState.new())
@@ -62,7 +62,7 @@ func _ready():
 	music_player.start(-2.0)
 
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	sync_manager.update()
 	for layer in view_layers:
 		layer.update()
@@ -171,7 +171,7 @@ func _process(_delta: float):
 		%Combo.text = ""
 
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		GameState.goto_select()
 

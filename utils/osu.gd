@@ -62,7 +62,7 @@ class _Chart:
 
 	var index := 0  # Used for time to beat conversion.
 
-	func setup():
+	func setup() -> void:
 		for i in range(1, len(tempos)):
 			tempos[i].setup(tempos[i - 1])
 		for speed in speeds:
@@ -106,7 +106,7 @@ class _Tempo:
 		time = float(values[0]) / 1000.0
 		value = 60_000.0 / float(values[1])  # Tempo is stored in milliseconds per beat.
 
-	func setup(prev: _Tempo):
+	func setup(prev: _Tempo) -> void:
 		# Snap to whole beats to avoid rounding errors.
 		beat = roundf(prev.beat + (time - prev.time) / (60.0 / prev.value))
 
@@ -125,7 +125,7 @@ class _Speed:
 		time = float(values[0]) / 1000.0
 		value = -100.0 / float(values[1])  # Speed is stored as negative inverse percentage.
 
-	func setup(osu_chart: _Chart):
+	func setup(osu_chart: _Chart) -> void:
 		# Snap to 12th beats to avoid rounding errors.
 		beat = roundf(osu_chart.get_beat(time) * 12.0) / 12.0
 
@@ -151,7 +151,7 @@ class _Note:
 		else:
 			end_time = time
 
-	func setup(osu_chart: _Chart):
+	func setup(osu_chart: _Chart) -> void:
 		# Snap to 12th beats to avoid rounding errors.
 		beat = roundf(osu_chart.get_beat(time) * 12.0) / 12.0
 		length = roundf((osu_chart.get_beat(end_time) - osu_chart.get_beat(time)) * 12.0) / 12.0

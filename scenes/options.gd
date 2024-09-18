@@ -9,14 +9,14 @@ var calibration_mode: CalibrationMode
 var calibration_hits: PackedFloat64Array
 
 
-func _ready():
+func _ready() -> void:
 	%Volume.value = GameState.volume
 	%AudioOffset.value = GameState.audio_offset
 	%VideoOffset.value = GameState.video_offset
 	%ScrollSpeed.value = GameState.scroll_speed
 
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	if calibration_mode != CalibrationMode.NONE and len(calibration_hits) >= 12:
 		%Music.stop()
 
@@ -36,7 +36,7 @@ func _physics_process(_delta: float):
 		calibration_mode = CalibrationMode.NONE
 
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	if calibration_mode == CalibrationMode.VIDEO:
 		# Not using latency compensation because the goal is to find the latency.
 		var cycle: float = %Music.get_time_smooth() * BPS * 0.25
@@ -47,7 +47,7 @@ func _process(_delta: float):
 		%VideoCalibration/Ball4.position.y = sqrt(absf(sin(PI * (cycle - 0.75)))) * -200.0
 
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		GameState.goto_menu()
 
@@ -60,11 +60,11 @@ func _input(event: InputEvent):
 			break
 
 
-func _on_back_pressed():
+func _on_back_pressed() -> void:
 	GameState.goto_menu()
 
 
-func _on_toggle_fullscreen_pressed():
+func _on_toggle_fullscreen_pressed() -> void:
 	GameState.fullscreen = not GameState.fullscreen
 
 	if GameState.fullscreen:
@@ -73,7 +73,7 @@ func _on_toggle_fullscreen_pressed():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
-func _on_volume_changed(value: float):
+func _on_volume_changed(value: float) -> void:
 	GameState.volume = value
 	%Volume/Value.text = String.num(value * 100, 1) + " %"
 
@@ -81,22 +81,22 @@ func _on_volume_changed(value: float):
 	AudioServer.set_bus_mute(0, is_zero_approx(value))
 
 
-func _on_audio_offset_changed(value: float):
+func _on_audio_offset_changed(value: float) -> void:
 	GameState.audio_offset = value
 	%AudioOffset/Value.text = str(roundi(value * 1000)) + " ms"
 
 
-func _on_video_offset_changed(value: float):
+func _on_video_offset_changed(value: float) -> void:
 	GameState.video_offset = value
 	%VideoOffset/Value.text = str(roundi(value * 1000)) + " ms"
 
 
-func _on_scroll_speed_changed(value: float):
+func _on_scroll_speed_changed(value: float) -> void:
 	GameState.scroll_speed = value
 	%ScrollSpeed/Value.text = String.num(value, 2) + " x"
 
 
-func _on_calibrate_audio_offset_pressed():
+func _on_calibrate_audio_offset_pressed() -> void:
 	# Video offset calibration mutes the audio, so we reset it here.
 	%Music.volume_db = 0
 	%Music.start()
@@ -108,7 +108,7 @@ func _on_calibrate_audio_offset_pressed():
 	calibration_hits.clear()
 
 
-func _on_calibrate_video_offset_pressed():
+func _on_calibrate_video_offset_pressed() -> void:
 	# The user needs to time visually, so we mute the audio.
 	%Music.volume_db = -80
 	%Music.start()
@@ -120,7 +120,7 @@ func _on_calibrate_video_offset_pressed():
 	calibration_hits.clear()
 
 
-func _play_click():
+func _play_click() -> void:
 	# Using a 50ms debounce timer so the sound isn't spammed to much.
 	if %Click/Debounce.is_stopped() and calibration_mode == CalibrationMode.NONE:
 		%Click/Debounce.start()

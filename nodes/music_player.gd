@@ -57,7 +57,7 @@ func start(time: float = 0.0) -> void:
 
 ## Time relative to playback start.
 func get_time_engine() -> float:
-	if stream_paused:
+	if not can_process():
 		return _time_pause - _time_start
 
 	return Time.get_ticks_usec() / 1_000_000.0 - _time_start
